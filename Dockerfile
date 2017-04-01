@@ -1,11 +1,7 @@
-FROM ubuntu:16.04
+FROM centos:7
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates \
-        bzip2 \
-        libfontconfig \
-        curl
+RUN yum install -y tar bzip2 fontconfig
+
 RUN mkdir /tmp/phantomjs \
     && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
            | tar -xj --strip-components=1 -C /tmp/phantomjs \
@@ -13,4 +9,3 @@ RUN mkdir /tmp/phantomjs \
     && mv bin/phantomjs /usr/local/bin
 
 WORKDIR /opt/spider/
-
